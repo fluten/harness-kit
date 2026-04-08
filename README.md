@@ -40,6 +40,8 @@ Harness Kit gives your AI agent a structured set of `.md` files that act as its 
 | **spec-gen** | Generates a standardized `SPEC.md` from your product discussion | After you've figured out what to build |
 | **project-init** | Reads your SPEC and generates the management files your AI needs | Before you start coding |
 
+> 📝 **Bonus**: This repo also ships a third standalone skill — [`readme-craft`](skills/readme-craft/) — which encodes the design rules of *this very README* (centered hero, bilingual `<details>`, Mermaid color schemes, anti-marketing tone). Use it when you want to write a similarly structured README for your own project. Not part of the spec-gen → project-init workflow.
+
 ## Workflow
 
 ```mermaid
@@ -377,6 +379,8 @@ Harness Kit 给你的 AI 助手一套结构化的 `.md` 文件，充当它的项
 |-------|-------|-----------|
 | **spec-gen** | 把产品讨论整理成标准化的 `SPEC.md` | 聊完需求之后 |
 | **project-init** | 读取 SPEC，生成 AI 需要的管理文件 | 开始写代码之前 |
+
+> 📝 **附加 skill**：本仓库还附带一个独立 skill —— [`readme-craft`](skills/readme-craft/) —— 把*这份 README 自身*的写作规范沉淀成可复用的 skill（居中 hero、双语 `<details>`、Mermaid 配色方案、反营销语气）。当你要为自己的项目写一份风格类似的 README 时使用。它不属于 spec-gen → project-init 工作流，是独立的第三个 skill。
 
 ## 工作流
 

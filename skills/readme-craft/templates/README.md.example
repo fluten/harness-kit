@@ -1,0 +1,268 @@
+<a id="top"></a>
+
+<div align="center">
+
+# {{EMOJI}} {{ProjectName}}
+
+<a href="#chinese-version">🇨🇳 中文文档</a>
+
+![License](https://img.shields.io/badge/License-MIT-yellow.svg) ![Made with](https://img.shields.io/badge/Made%20with-{{tech}}-1f425f.svg) ![{{compat}}](https://img.shields.io/badge/{{compat}}-Compatible-blue) [![Author](https://img.shields.io/badge/Author-{{user}}-181717?logo=github&logoColor=white)](https://github.com/{{user}})
+
+### {{One-line tagline}}
+
+{{2-3 sentences. What it is, who it's for, why it's different. Write directly — no preamble.}}
+
+<i>"{{Punchy quote that captures the core insight}}"</i><br>
+<sub>— {{attribution}}</sub>
+
+</div>
+
+## The Problem
+
+You've been here before:
+
+1. {{Pain point step 1}}
+2. {{Escalation}}
+3. {{Core pain}}
+4. {{Hidden cost}}
+5. Repeat
+
+**The root cause isn't {{X}}. It's {{Y}}.**
+
+## The Solution
+
+{{1-2 sentences explaining the project's essence with an analogy.}}
+
+**{{Core mechanism in one phrase}}:**
+
+| {{Component}} | What it does | When to use |
+|---|---|---|
+| **{{piece1}}** | {{description}} | {{trigger}} |
+| **{{piece2}}** | {{description}} | {{trigger}} |
+
+## Workflow
+
+<!-- Only include if the project has a visualizable flow. Otherwise delete this section entirely. -->
+
+```mermaid
+flowchart TD
+    A([💬 {{Starting human action}}]) --> B[/{{tool1}}/]
+    B --> C[📄 {{key artifact}}]
+    C --> D[/{{tool2}}/]
+    D --> E[📘 {{output1}}]
+    D --> F[📋 {{output2}}]
+    D -.optional.-> G[{{conditional outputs}}]
+    E --> H([🤖 {{Final actor}}])
+    F --> H
+    G --> H
+    H --> I([✨ {{Success outcome}}])
+
+    style A fill:#FEF3C7,stroke:#F59E0B,stroke-width:2px,color:#000
+    style B fill:#DBEAFE,stroke:#3B82F6,stroke-width:2px,color:#000
+    style C fill:#EDE9FE,stroke:#8B5CF6,stroke-width:2px,color:#000
+    style D fill:#DBEAFE,stroke:#3B82F6,stroke-width:2px,color:#000
+    style E fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
+    style F fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
+    style G fill:#F8FAFC,stroke:#94A3B8,stroke-width:1px,stroke-dasharray:4 4,color:#000
+    style H fill:#DCFCE7,stroke:#22C55E,stroke-width:2px,color:#000
+    style I fill:#DCFCE7,stroke:#22C55E,stroke-width:2px,color:#000
+```
+
+## What Gets Generated
+
+<!-- For generator/framework projects. For tool projects, replace with "## Features". -->
+
+### Always generated
+
+| File | Purpose |
+|---|---|
+| `{{file1}}` | {{purpose}} |
+| `{{file2}}` | {{purpose}} |
+
+### Generated when needed
+
+| File | Condition | Purpose |
+|---|---|---|
+| `{{file3}}` | {{condition}} | {{purpose}} |
+
+**{{Why-not-everything reflection}}**: {{1-2 sentences explaining the design tradeoff.}}
+
+## Quick Start
+
+### Install via command line (recommended)
+
+```bash
+# {{What this command does}}
+mkdir -p {{target dir}}
+git clone --depth=1 https://github.com/{{user}}/{{repo}}.git /tmp/{{repo}}
+cp -r /tmp/{{repo}}/{{payload path}}/* {{target dir}}/
+rm -rf /tmp/{{repo}}
+```
+
+> {{Important note about prerequisites or path requirements}}
+
+### Manual install ({{target audience}})
+
+1. {{step}}
+2. {{step}}
+
+### For {{other env or tool}}
+
+{{1-2 sentence note + commands or instructions}}
+
+## Key Design Principles
+
+<!-- Highly recommended for framework/tool projects. Each principle is a strong opinion + the rationale + how it works. -->
+
+### {{Principle 1 title}}
+
+{{1-2 paragraphs: what it is, why it matters, how it manifests in the project. Optional code example or mini-diagram.}}
+
+### {{Principle 2 title}}
+
+{{...}}
+
+### {{Principle 3 title}}
+
+{{...}}
+
+## Example: {{ExampleName}}
+
+<!-- Only if you have a real example. Always include the disclaimer. -->
+
+The `examples/` directory contains a complete set of files for **{{name}}** — {{1-line description}}. See how each template looks when filled with real data.
+
+> ⚠️ **About this example**
+> - **{{Caveat about how it was made}}** — {{detail}}
+> - **{{Caveat about anything forced for demo purposes}}** — {{detail}}
+> - It's here to show what filled-in templates *look like structurally* — **not what your final output would be**.
+
+## File Reference
+
+<!-- Only for multi-file frameworks. -->
+
+<details>
+<summary><b>{{File1}}.md</b> — {{role}}</summary>
+
+{{1-2 paragraphs: what fields it contains, how it's used, key design notes.}}
+
+{{Optional: a paragraph about any special mechanism (auto-maintained header, locked sections, etc.)}}
+</details>
+
+<details>
+<summary><b>{{File2}}.md</b> — {{role}}</summary>
+
+{{...}}
+</details>
+
+## Philosophy
+
+<!-- Only if your project has strong opinions worth declaring. -->
+
+{{ProjectName}} is built on {{N}} beliefs:
+
+1. **{{Belief 1}}** {{Explanation}}
+2. **{{Belief 2}}** {{Explanation}}
+3. **{{Belief 3}}** {{Explanation}}
+
+## Contributing
+
+Found a better way? Have a feature you wish existed? PRs welcome.
+
+---
+
+**Built by [{{Author}}](https://github.com/{{user}})** — {{1-line author background, can be slightly humorous}}.
+
+---
+
+<a id="chinese-version"></a>
+
+<details open>
+<summary><b>🇨🇳 中文文档 / Chinese Version</b></summary>
+
+<br>
+
+<!-- 完整中文版从此开始：标题、徽章不重复、所有章节翻译完整 -->
+
+<div align="center">
+
+# {{EMOJI}} {{项目名}}
+
+<a href="#top">🇬🇧 English</a>
+
+### {{一句话标语}}
+
+{{2-3 句中文简介}}
+
+<i>"{{中文金句}}"</i><br>
+<sub>— {{出处}}</sub>
+
+</div>
+
+## 痛点
+
+你一定经历过：
+
+1. {{第一步小痛}}
+2. {{升级}}
+3. {{核心痛点}}
+4. {{延伸代价}}
+5. 循环往复
+
+**根源不是 {{X}}，而是 {{Y}}。**
+
+## 解决方案
+
+{{...对应英文版}}
+
+## 工作流
+
+<!-- 与英文版一致，节点文本翻译为中文，配色完全相同 -->
+
+```mermaid
+flowchart TD
+    A([💬 {{中文起始动作}}]) --> B[/{{工具1}}/]
+    {{...}}
+```
+
+## 生成什么文件
+
+{{...}}
+
+## 快速开始
+
+### 命令行安装（推荐）
+
+```bash
+# {{中文注释}}
+{{...same commands}}
+```
+
+## 核心设计原则
+
+{{...}}
+
+## 示例：{{ExampleName}}
+
+{{...}}
+
+## 文件参考
+
+{{...}}
+
+## 设计哲学
+
+{{ProjectName}} 建立在 {{N}} 个信念之上：
+
+1. **{{信念 1}}** {{解释}}
+2. **{{信念 2}}** {{解释}}
+
+## 贡献
+
+发现了更好的方法？有想要的功能？欢迎 PR。
+
+---
+
+**作者：[{{Author}}](https://github.com/{{user}})** — {{中文作者背景}}。
+
+</details>
