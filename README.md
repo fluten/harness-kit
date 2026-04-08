@@ -1,6 +1,10 @@
+<a id="top"></a>
+
 <div align="center">
 
 # 🔧 Harness Kit
+
+<a href="#chinese-version">🇨🇳 中文文档</a>
 
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg) ![Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg) ![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-blue) ![Claude Skill](https://img.shields.io/badge/Claude%20Code-Skill-D97757?logo=anthropic&logoColor=white) [![Author](https://img.shields.io/badge/Author-fluten-181717?logo=github&logoColor=white)](https://github.com/fluten)
 
@@ -42,6 +46,7 @@ Harness Kit gives your AI agent a structured set of `.md` files that act as its 
 flowchart TD
     A([💬 Discuss product with AI]) --> B[/spec-gen/]
     B --> C[📄 SPEC.md]
+    C -.if &gt; 300 lines.-> S[📂 docs/spec/*.md<br/>auto-split by module]
     C --> D[/project-init/]
     D --> E[📘 CLAUDE.md]
     D --> F[📋 TODO.md]
@@ -54,6 +59,7 @@ flowchart TD
     style A fill:#FEF3C7,stroke:#F59E0B,stroke-width:2px,color:#000
     style B fill:#DBEAFE,stroke:#3B82F6,stroke-width:2px,color:#000
     style C fill:#EDE9FE,stroke:#8B5CF6,stroke-width:2px,color:#000
+    style S fill:#F5F3FF,stroke:#A78BFA,stroke-width:1px,stroke-dasharray:4 4,color:#000
     style D fill:#DBEAFE,stroke:#3B82F6,stroke-width:2px,color:#000
     style E fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
     style F fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
@@ -167,6 +173,10 @@ Each file starts with a permission table so the AI knows exactly what it can and
 
 This prevents the AI from silently changing your product requirements while "improving" the codebase.
 
+### Auto-split when files outgrow themselves
+
+Large markdown files burn context window and become unreliable for LLM parsing. When `SPEC.md` exceeds **300 lines**, the AI is prompted to split it by module into `docs/spec/*.md`, keeping the main file as a navigation hub with overview + links. The framework grows with your project — but no single file is allowed to bloat.
+
 ## Example: ChatLens
 
 The `examples/` directory contains a complete set of files generated for **ChatLens** — a B2B AI conversation analytics platform. See how each template looks when filled with real project data.
@@ -252,6 +262,8 @@ Found a better way to structure a file? Have a template for a file type we haven
 
 ---
 
+<a id="chinese-version"></a>
+
 <details>
 <summary><b>🇨🇳 中文文档 / Chinese Version</b></summary>
 
@@ -260,6 +272,8 @@ Found a better way to structure a file? Have a template for a file type we haven
 <div align="center">
 
 # 🔧 Harness Kit
+
+<a href="#top">🇬🇧 English</a>
 
 ### 别写 prompt 了，给 AI 套上缰绳。
 
@@ -299,6 +313,7 @@ Harness Kit 给你的 AI 助手一套结构化的 `.md` 文件，充当它的项
 flowchart TD
     A([💬 和 AI 讨论产品需求]) --> B[/spec-gen/]
     B --> C[📄 SPEC.md]
+    C -.超 300 行.-> S[📂 docs/spec/*.md<br/>按模块自动拆分]
     C --> D[/project-init/]
     D --> E[📘 CLAUDE.md]
     D --> F[📋 TODO.md]
@@ -311,6 +326,7 @@ flowchart TD
     style A fill:#FEF3C7,stroke:#F59E0B,stroke-width:2px,color:#000
     style B fill:#DBEAFE,stroke:#3B82F6,stroke-width:2px,color:#000
     style C fill:#EDE9FE,stroke:#8B5CF6,stroke-width:2px,color:#000
+    style S fill:#F5F3FF,stroke:#A78BFA,stroke-width:1px,stroke-dasharray:4 4,color:#000
     style D fill:#DBEAFE,stroke:#3B82F6,stroke-width:2px,color:#000
     style E fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
     style F fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
@@ -423,6 +439,10 @@ Skill 本质是 Markdown 模板，任何能读项目文件的 AI 都能用：
 - **决策文件**（SPEC、ARCHITECTURE、SCHEMA、DESIGN、DECISIONS）：AI 修改前必须征求用户同意
 
 防止 AI 在"优化"代码的同时悄悄改了你的产品需求。
+
+### 超长文件自动拆分
+
+大型 Markdown 文件烧上下文窗口、LLM 解析也不可靠。当 `SPEC.md` 超过 **300 行** 时，AI 会提醒按模块拆分到 `docs/spec/*.md`，主文件保留为导航中枢（概览 + 跳转链接）。框架随项目增长，但不允许任何单个文件臃肿。
 
 ## 示例：ChatLens
 
