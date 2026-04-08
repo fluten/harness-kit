@@ -208,6 +208,8 @@ Includes creation templates for third-tier files so the AI can bootstrap them du
 <summary><b>TODO.md</b> — Task Queue</summary>
 
 Three-priority task queue (high/normal/low) with a "current task" focus area limited to 1-3 items. Completed tasks move to a done section with timestamps. Rules enforce synchronization with PROGRESS.md and ISSUES.md.
+
+**📊 快速状态 头块** at the top — auto-rebuilt by AI after any body change. Fields: in-progress count, backlog distribution, next action, last updated. Lets a fresh LLM decide whether to read the full file in <10 tokens.
 </details>
 
 <details>
@@ -233,18 +235,24 @@ Part 2 (Interaction): page structure, navigation flow, loading/empty/error state
 <summary><b>ISSUES.md</b> — Issue Tracker</summary>
 
 Six issue types (BUG/DEBT/QUESTION/LIMIT/PERF/FEAT), four-state workflow (🔴→🟡→🟢→✅), module-prefixed IDs (e.g., `BUG-AUTH-001`), type-specific required fields, auto-archive after 10 verified issues.
+
+**📊 快速状态 头块** at the top — auto-rebuilt by AI on every state change. Fields: active modules, start-here ID, state counts, MVP-blocking flag. A reading LLM can skip the file entirely if its current task touches none of the active modules.
 </details>
 
 <details>
 <summary><b>DECISIONS.md</b> — Architecture Decision Records</summary>
 
 Grouped by module, each with three states (✅ Decided / 💬 Discussing / 🗑️ Deprecated). Records what was chosen, what was rejected and why, and irreversibility level (🟢/🟡/🔴). AI is forbidden from overturning 🔴 irreversible decisions.
+
+**🔴 不可逆决策清单 头块** at the top — auto-rebuilt by AI. Lists every 🔴 irreversible decision in one place so the AI must check it before touching any decision. Not a triage block — it's a no-go zone reminder.
 </details>
 
 <details>
 <summary><b>PROGRESS.md</b> — Session Continuity</summary>
 
 Project status, recent completions, current blockers, milestones, session log. Enables seamless handoff between AI coding sessions.
+
+**📊 快速状态 头块** at the top — auto-rebuilt by AI. Fields: phase, current milestone with progress%, blocker count, where-to-resume, last updated. The first thing a new session reads to orient in <30 seconds.
 </details>
 
 ## Philosophy
@@ -269,7 +277,7 @@ Found a better way to structure a file? Have a template for a file type we haven
 
 <a id="chinese-version"></a>
 
-<details>
+<details open>
 <summary><b>🇨🇳 中文文档 / Chinese Version</b></summary>
 
 <br>
@@ -480,6 +488,8 @@ Skill 本质是 Markdown 模板，任何能读项目文件的 AI 都能用：
 <summary><b>TODO.md</b> — 任务队列</summary>
 
 三级优先级的任务队列（高/中/低），"当前任务"聚焦区限制 1-3 项。完成任务移动到已完成区并附时间戳。规则强制与 PROGRESS.md 和 ISSUES.md 同步。
+
+**顶部 📊 快速状态 头块** —— AI 在每次修改 body 后按底部锁定区的算法自动重建。字段：进行中数 / 待办分布 / 下一步 / 更新时间。让新的 LLM 在 <10 token 内决定要不要读全文。
 </details>
 
 <details>
@@ -505,18 +515,24 @@ Skill 本质是 Markdown 模板，任何能读项目文件的 AI 都能用：
 <summary><b>ISSUES.md</b> — 问题追踪</summary>
 
 六种 issue 类型（BUG/DEBT/QUESTION/LIMIT/PERF/FEAT）、四态工作流（🔴→🟡→🟢→✅）、模块前缀 ID（例如 `BUG-AUTH-001`）、按类型区分的必填字段、累计 10 个验证完成后自动归档。
+
+**顶部 📊 快速状态 头块** —— AI 在每次状态变更后按算法自动重建。字段：活跃模块 / 起读位置 / 状态计数 / 是否阻塞 MVP。读取的 LLM 如果当前任务不涉及"活跃模块"，可以直接跳过整个文件。
 </details>
 
 <details>
 <summary><b>DECISIONS.md</b> — 架构决策记录</summary>
 
 按模块分组，每条决策有三种状态（✅ 已决定 / 💬 讨论中 / 🗑️ 已废弃）。记录采纳了什么、否决了什么以及原因、以及不可逆程度（🟢/🟡/🔴）。AI 禁止推翻 🔴 不可逆决策。
+
+**顶部 🔴 不可逆决策清单 头块** —— AI 自动重建。把所有 🔴 不可逆决策集中列在一处，AI 在动决策之前必须先核对此清单。不是 triage 头块，而是禁区提醒。
 </details>
 
 <details>
 <summary><b>PROGRESS.md</b> — 会话连续性</summary>
 
 项目状态、近期完成、当前阻塞、里程碑、会话日志。让多个 AI 编程会话之间无缝衔接。
+
+**顶部 📊 快速状态 头块** —— AI 自动重建。字段：阶段 / 当前里程碑（含进度%）/ 阻塞计数 / 下次从哪继续 / 更新时间。新 session 启动后第一个读的地方，30 秒内 orient。
 </details>
 
 ## 设计哲学
