@@ -181,7 +181,10 @@ Large markdown files burn context window and become unreliable for LLM parsing. 
 
 The `examples/` directory contains a complete set of files generated for **ChatLens** — a B2B AI conversation analytics platform. See how each template looks when filled with real project data.
 
-> ⚠️ **Heads up**: This example was generated from a quick brainstorm with Claude — not a deep product discovery session. It's meant to show what the templates *look like* when filled in, not what your output should aspire to. Real projects with thorough requirement discussions will produce much richer, more detailed files.
+> ⚠️ **About this example**
+> - **Shallow input** — I only briefly described the idea to Claude, no detailed back-and-forth
+> - **All 9 files were force-generated for demonstration**, not chosen by the skill — in real use, the skill scales output to your SPEC's complexity, so a small project may only get 3 core files
+> - It's here to show what filled-in templates *look like structurally* — **not what your final output would be**
 
 ## File Reference
 
@@ -450,7 +453,10 @@ Skill 本质是 Markdown 模板，任何能读项目文件的 AI 都能用：
 
 `examples/` 目录包含 **ChatLens**（B2B AI 对话分析平台）的完整文件集。可以看到每个模板填入真实项目数据后的样子。
 
-> ⚠️ **说明**：这个示例只是简单跟 Claude 聊了几句想法就直接生成的，并没有深入打磨需求细节。仅用于展示模板填充后的结构长什么样，**不代表最终能达到的细致程度**。真实项目里把需求聊透之后，产出会比这丰富、严谨得多。
+> ⚠️ **关于这个示例**
+> - **聊得很浅**——只是简单跟 Claude 描述了几句想法就让它生成的，并没有深入打磨需求
+> - **9 个文件是为了演示效果强制全部生成的**，并非 skill 按需判断的结果——真实使用时 skill 会根据 SPEC 复杂度伸缩，小项目可能只生成 3 个核心文件
+> - 这里只展示模板填充后的结构长什么样，**并不代表最终呈现**
 
 ## 文件参考
 
