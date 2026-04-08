@@ -130,6 +130,8 @@ rm -rf /tmp/harness-kit
 
 > Claude Code searches for skills in `.claude/skills/` at the **git repository root**. For project-local install, make sure you run it from the right place.
 
+> 💡 **For developers contributing to harness-kit**: After cloning, run `bash scripts/sync-skills.sh` to sync the local `skills/` directory to your global `~/.claude/skills/`. Re-run after every skill edit. The script overwrites existing global versions with the repo's current state — idempotent, safe to run repeatedly.
+
 ### Manual install (Claude.ai)
 
 1. Download the `.skill` files from [Releases](../../releases)
@@ -469,6 +471,8 @@ rm -rf /tmp/harness-kit
 ```
 
 > Claude Code 从 **git 仓库根目录** 的 `.claude/skills/` 查找 skill。项目级安装请在正确位置执行。
+
+> 💡 **给本仓库开发者**：clone 之后，跑 `bash scripts/sync-skills.sh` 把本地 `skills/` 目录同步到全局 `~/.claude/skills/`。每次改完 skill 都重跑一次。脚本会用仓库当前状态覆盖全局已有版本——幂等的，可以反复跑。
 
 ### 手动安装（Claude.ai）
 
