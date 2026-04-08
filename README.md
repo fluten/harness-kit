@@ -54,6 +54,15 @@ flowchart TD
     E --> H([🤖 AI Coding Agent])
     F --> H
     G --> H
+
+    %% Third-tier files: spawned during development on first trigger
+    H -.first bug or question.-> J1[🐛 ISSUES.md<br/>auto-created]
+    H -.first decision.-> J2[📝 DECISIONS.md<br/>auto-created]
+    H -.cross-session handoff.-> J3[🔄 PROGRESS.md<br/>auto-created]
+    J1 -.read back.-> H
+    J2 -.read back.-> H
+    J3 -.read back.-> H
+
     H --> I([✨ Builds what you actually want])
 
     style A fill:#FEF3C7,stroke:#F59E0B,stroke-width:2px,color:#000
@@ -66,6 +75,9 @@ flowchart TD
     style G fill:#F8FAFC,stroke:#94A3B8,stroke-width:1px,stroke-dasharray:4 4,color:#000
     style H fill:#DCFCE7,stroke:#22C55E,stroke-width:2px,color:#000
     style I fill:#DCFCE7,stroke:#22C55E,stroke-width:2px,color:#000
+    style J1 fill:#FEF2F2,stroke:#FCA5A5,stroke-width:1px,stroke-dasharray:4 4,color:#000
+    style J2 fill:#FFFBEB,stroke:#FCD34D,stroke-width:1px,stroke-dasharray:4 4,color:#000
+    style J3 fill:#F0FDF4,stroke:#86EFAC,stroke-width:1px,stroke-dasharray:4 4,color:#000
 ```
 
 ## What Gets Generated
@@ -176,6 +188,52 @@ This prevents the AI from silently changing your product requirements while "imp
 ### Auto-split when files outgrow themselves
 
 Large markdown files burn context window and become unreliable for LLM parsing. When `SPEC.md` exceeds **300 lines**, the AI is prompted to split it by module into `docs/spec/*.md`, keeping the main file as a navigation hub with overview + links. The framework grows with your project — but no single file is allowed to bloat.
+
+### Self-maintaining triage headers
+
+The four state-bearing files (`TODO.md` / `ISSUES.md` / `PROGRESS.md` / `DECISIONS.md`) carry a structured **📊 快速状态** block at the very top, auto-rebuilt by the AI on every body change.
+
+The header is **mechanically derived** from the body — count items, scan modules, extract first-of-list — never subjective judgment. Each file's 🔒 locked region holds a deterministic rebuild algorithm (pseudocode steps); the AI runs it after any body edit and rewrites the entire header block from scratch (no incremental patching).
+
+**Why it matters**: a fresh LLM landing on a process file can decide *"should I read this?"* in <50 tokens. If the current task doesn't touch the header's `active modules`, the body is skipped without ever loading. This is the framework's primary token-efficiency lever — and it scales: the longer the project lives, the more skips it earns you.
+
+**The decision flow when an AI opens a process file:**
+
+```mermaid
+flowchart TD
+    Start([🎯 AI receives a task]) --> Open[Open a process file<br/>TODO / ISSUES / PROGRESS / DECISIONS]
+    Open --> ScanH[👁️ Scan the 📊 Quick Status header<br/>≤ 10 lines / ≤ 50 tokens]
+
+    ScanH --> Q1{Does the task<br/>touch any of the<br/>header's active modules?}
+    Q1 -->|Yes| ReadBody[📖 Continue reading the body<br/>find specific items]
+    Q1 -->|No| Q2{Is the task<br/>a new-session orient<br/>or a debugging task?}
+    Q2 -->|Yes| ReadBody
+    Q2 -->|No| Skip[⏭️ Skip the body<br/>save tokens]
+
+    ReadBody --> Work[💻 Execute the task]
+    Skip --> Work
+
+    Work --> ModBody{Did you modify<br/>the file's body?}
+    ModBody -->|No| End([✅ Task complete])
+    ModBody -->|Yes| RunAlgo[🔒 Run the rebuild algorithm<br/>at the bottom of the file<br/>count / scan / extract]
+    RunAlgo --> RewriteH[♻️ Rewrite the entire header block<br/>no incremental edits allowed]
+    RewriteH --> End
+
+    style Start fill:#FEF3C7,stroke:#F59E0B,stroke-width:2px,color:#000
+    style End fill:#DCFCE7,stroke:#22C55E,stroke-width:2px,color:#000
+    style ScanH fill:#EDE9FE,stroke:#8B5CF6,stroke-width:2px,color:#000
+    style Skip fill:#DBEAFE,stroke:#3B82F6,stroke-width:2px,color:#000
+    style ReadBody fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
+    style Work fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
+    style RunAlgo fill:#FEE2E2,stroke:#EF4444,stroke-width:2px,color:#000
+    style RewriteH fill:#FEE2E2,stroke:#EF4444,stroke-width:2px,color:#000
+    style Q1 fill:#FFFBEB,stroke:#D97706,stroke-width:1px,color:#000
+    style Q2 fill:#FFFBEB,stroke:#D97706,stroke-width:1px,color:#000
+    style ModBody fill:#FFFBEB,stroke:#D97706,stroke-width:1px,color:#000
+    style Open fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
+```
+
+The header's fields are intentionally **boring**: counts, module names, IDs, dates. No "health scores", no prose summaries. This is the only way the AI can rebuild it deterministically across hundreds of edits without drift.
 
 ## Example: ChatLens
 
@@ -334,6 +392,15 @@ flowchart TD
     E --> H([🤖 AI 编程助手])
     F --> H
     G --> H
+
+    %% 第三层文件：开发中首次触发条件时自动创建
+    H -.遇首个 bug/疑问.-> J1[🐛 ISSUES.md<br/>自动创建]
+    H -.遇首个决策.-> J2[📝 DECISIONS.md<br/>自动创建]
+    H -.跨 session 续接.-> J3[🔄 PROGRESS.md<br/>自动创建]
+    J1 -.读回.-> H
+    J2 -.读回.-> H
+    J3 -.读回.-> H
+
     H --> I([✨ 产出你真正想要的代码])
 
     style A fill:#FEF3C7,stroke:#F59E0B,stroke-width:2px,color:#000
@@ -346,6 +413,9 @@ flowchart TD
     style G fill:#F8FAFC,stroke:#94A3B8,stroke-width:1px,stroke-dasharray:4 4,color:#000
     style H fill:#DCFCE7,stroke:#22C55E,stroke-width:2px,color:#000
     style I fill:#DCFCE7,stroke:#22C55E,stroke-width:2px,color:#000
+    style J1 fill:#FEF2F2,stroke:#FCA5A5,stroke-width:1px,stroke-dasharray:4 4,color:#000
+    style J2 fill:#FFFBEB,stroke:#FCD34D,stroke-width:1px,stroke-dasharray:4 4,color:#000
+    style J3 fill:#F0FDF4,stroke:#86EFAC,stroke-width:1px,stroke-dasharray:4 4,color:#000
 ```
 
 ## 生成什么文件
@@ -456,6 +526,52 @@ Skill 本质是 Markdown 模板，任何能读项目文件的 AI 都能用：
 ### 超长文件自动拆分
 
 大型 Markdown 文件烧上下文窗口、LLM 解析也不可靠。当 `SPEC.md` 超过 **300 行** 时，AI 会提醒按模块拆分到 `docs/spec/*.md`，主文件保留为导航中枢（概览 + 跳转链接）。框架随项目增长，但不允许任何单个文件臃肿。
+
+### 自维护的分诊头块
+
+四个状态可变的文件（`TODO.md` / `ISSUES.md` / `PROGRESS.md` / `DECISIONS.md`）顶部都嵌入了一个结构化的 **📊 快速状态** 块，AI 在每次修改 body 后自动重建。
+
+这个头块是**纯机械派生**的——数条目、扫模块、提取首项，**禁止任何主观判断**。每个文件的 🔒 锁定区底部都嵌入了一段确定性伪代码（重建算法），AI 在改完 body 后跑一遍算法，把整个头块**从零重写**（不允许增量修改字段）。
+
+**为什么这是必要的**：一个新 session 的 LLM 落在一个 process 文件上，能在 <50 token 内决定 *"我要不要读这个文件？"*。如果当前任务不涉及头块里的「活跃模块」，body 整个跳过、永不加载。这是框架最重要的 token 效率杠杆——而且**项目越久收益越大**：累积的可跳过文件越多，省的 token 越多。
+
+**AI 打开 process 文件时的决策流程：**
+
+```mermaid
+flowchart TD
+    Start([🎯 AI 接到一个任务]) --> Open[打开 process 文件<br/>TODO / ISSUES / PROGRESS / DECISIONS]
+    Open --> ScanH[👁️ 扫顶部 📊 快速状态<br/>≤ 10 行 / ≤ 50 token]
+
+    ScanH --> Q1{当前任务<br/>涉及头块所列<br/>「活跃模块」?}
+    Q1 -->|是| ReadBody[📖 继续读 body<br/>找具体条目]
+    Q1 -->|否| Q2{任务是<br/>新 session orient<br/>或调试类?}
+    Q2 -->|是| ReadBody
+    Q2 -->|否| Skip[⏭️ 跳过 body<br/>节省 token]
+
+    ReadBody --> Work[💻 执行任务]
+    Skip --> Work
+
+    Work --> ModBody{是否修改了<br/>文件 body?}
+    ModBody -->|否| End([✅ 任务完成])
+    ModBody -->|是| RunAlgo[🔒 跑文件底部<br/>重建算法<br/>count / scan / extract]
+    RunAlgo --> RewriteH[♻️ 整体重写头块<br/>禁止增量修改字段]
+    RewriteH --> End
+
+    style Start fill:#FEF3C7,stroke:#F59E0B,stroke-width:2px,color:#000
+    style End fill:#DCFCE7,stroke:#22C55E,stroke-width:2px,color:#000
+    style ScanH fill:#EDE9FE,stroke:#8B5CF6,stroke-width:2px,color:#000
+    style Skip fill:#DBEAFE,stroke:#3B82F6,stroke-width:2px,color:#000
+    style ReadBody fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
+    style Work fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
+    style RunAlgo fill:#FEE2E2,stroke:#EF4444,stroke-width:2px,color:#000
+    style RewriteH fill:#FEE2E2,stroke:#EF4444,stroke-width:2px,color:#000
+    style Q1 fill:#FFFBEB,stroke:#D97706,stroke-width:1px,color:#000
+    style Q2 fill:#FFFBEB,stroke:#D97706,stroke-width:1px,color:#000
+    style ModBody fill:#FFFBEB,stroke:#D97706,stroke-width:1px,color:#000
+    style Open fill:#F1F5F9,stroke:#64748B,stroke-width:1px,color:#000
+```
+
+头块的字段刻意做得**枯燥**：数字、模块名、ID、日期。**没有"健康度"、没有散文摘要**。这是 AI 在数百次编辑里能确定性重建、永不漂移的唯一前提。
 
 ## 示例：ChatLens
 
