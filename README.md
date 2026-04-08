@@ -181,6 +181,8 @@ Large markdown files burn context window and become unreliable for LLM parsing. 
 
 The `examples/` directory contains a complete set of files generated for **ChatLens** — a B2B AI conversation analytics platform. See how each template looks when filled with real project data.
 
+> ⚠️ **Heads up**: This example was generated from a quick brainstorm with Claude — not a deep product discovery session. It's meant to show what the templates *look like* when filled in, not what your output should aspire to. Real projects with thorough requirement discussions will produce much richer, more detailed files.
+
 ## File Reference
 
 <details>
@@ -447,6 +449,8 @@ Skill 本质是 Markdown 模板，任何能读项目文件的 AI 都能用：
 ## 示例：ChatLens
 
 `examples/` 目录包含 **ChatLens**（B2B AI 对话分析平台）的完整文件集。可以看到每个模板填入真实项目数据后的样子。
+
+> ⚠️ **说明**：这个示例只是简单跟 Claude 聊了几句想法就直接生成的，并没有深入打磨需求细节。仅用于展示模板填充后的结构长什么样，**不代表最终能达到的细致程度**。真实项目里把需求聊透之后，产出会比这丰富、严谨得多。
 
 ## 文件参考
 
