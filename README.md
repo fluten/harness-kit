@@ -148,7 +148,7 @@ All files are optimized for AI parsing, not human aesthetics. No ASCII art diagr
 ```markdown
 <!-- Instead of this: -->
 ┌──────────┐     ┌──────────┐
-│ Frontend  │────▶│ Backend  │
+│ Frontend │───▶│ Backend  │
 └──────────┘     └──────────┘
 
 <!-- We write this: -->
